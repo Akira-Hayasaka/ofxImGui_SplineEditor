@@ -9,6 +9,109 @@
 		<string>46</string>
 		<key>objects</key>
 		<dict>
+			<key>4E0F6535A2EE771F954D15A3</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxCurvesTool.h</string>
+				<key>path</key>
+				<string>addons/ofxCurvesTool/src/ofxCurvesTool.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>5EED4DC49AAB0E6AFD9DC838</key>
+			<dict>
+				<key>fileRef</key>
+				<string>E8C182404B9515E067CFE745</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>E8C182404B9515E067CFE745</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxCurvesTool.cpp</string>
+				<key>path</key>
+				<string>addons/ofxCurvesTool/src/ofxCurvesTool.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>64978AC63DD6C3F6F6B8F8F7</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>CurveLut.h</string>
+				<key>path</key>
+				<string>addons/ofxCurvesTool/src/CurveLut.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>EE640A30A6876B2570B3F8CC</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>04C27CCAB8984FC33C3AC72A</string>
+					<string>64978AC63DD6C3F6F6B8F8F7</string>
+					<string>E8C182404B9515E067CFE745</string>
+					<string>4E0F6535A2EE771F954D15A3</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>src</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>E26764AC9585A57589D903B1</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>EE640A30A6876B2570B3F8CC</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>ofxCurvesTool</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>66A18083097D77D74B6F8BC7</key>
+			<dict>
+				<key>fileRef</key>
+				<string>04C27CCAB8984FC33C3AC72A</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>04C27CCAB8984FC33C3AC72A</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>CurveLut.cpp</string>
+				<key>path</key>
+				<string>addons/ofxCurvesTool/src/CurveLut.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
 			<key>5F9A76386B6868CCF397B91A</key>
 			<dict>
 				<key>explicitFileType</key>
@@ -548,6 +651,7 @@
 				<key>children</key>
 				<array>
 					<string>618D089DFBD6FA9474B27141</string>
+					<string>E26764AC9585A57589D903B1</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>
@@ -717,6 +821,7 @@
 						<string>addons/ofxImGui/libs/imgui</string>
 						<string>addons/ofxImGui/libs/imgui/src</string>
 						<string>addons/ofxImGui/src</string>
+						<string>addons/ofxCurvesTool/src</string>
 					</array>
 					<key>CONFIGURATION_BUILD_DIR</key>
 					<string>$(SRCROOT)/bin/</string>
@@ -779,6 +884,7 @@
 						<string>addons/ofxImGui/libs/imgui</string>
 						<string>addons/ofxImGui/libs/imgui/src</string>
 						<string>addons/ofxImGui/src</string>
+						<string>addons/ofxCurvesTool/src</string>
 					</array>
 					<key>CONFIGURATION_BUILD_DIR</key>
 					<string>$(SRCROOT)/bin/</string>
@@ -845,6 +951,8 @@
 					<string>D90F0E52697CEF332282B368</string>
 					<string>22C9949443A1DD8DC2BE0329</string>
 					<string>617C668BC73991743F15E495</string>
+					<string>66A18083097D77D74B6F8BC7</string>
+					<string>5EED4DC49AAB0E6AFD9DC838</string>
 				</array>
 				<key>isa</key>
 				<string>PBXSourcesBuildPhase</string>
@@ -933,6 +1041,7 @@
 						<string>addons/ofxImGui/libs/imgui</string>
 						<string>addons/ofxImGui/libs/imgui/src</string>
 						<string>addons/ofxImGui/src</string>
+						<string>addons/ofxCurvesTool/src</string>
 					</array>
 					<key>COMBINE_HIDPI_IMAGES</key>
 					<string>YES</string>
@@ -985,6 +1094,7 @@
 						<string>addons/ofxImGui/libs/imgui</string>
 						<string>addons/ofxImGui/libs/imgui/src</string>
 						<string>addons/ofxImGui/src</string>
+						<string>addons/ofxCurvesTool/src</string>
 					</array>
 					<key>COMBINE_HIDPI_IMAGES</key>
 					<string>YES</string>

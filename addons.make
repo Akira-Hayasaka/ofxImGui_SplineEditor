@@ -1,1 +1,2 @@
 addons/ofxImGui
+addons/ofxCurvesTool

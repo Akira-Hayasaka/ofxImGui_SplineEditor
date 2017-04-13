@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxImGui.h"
+#include "ofxCurvesTool.h"
 
 class ofApp : public ofBaseApp
 {
@@ -21,6 +22,17 @@ public:
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
+
+private:
+    
+    double st2084_pq(double L);
     
     ofxImGui::Gui gui;
+    
+    ofxCurvesTool curvesTool;
+    bool show;
+    
+    vector<float> lut;
+    vector<ofVec2f> pLut;
+    ofPolyline lutLine;
 };
