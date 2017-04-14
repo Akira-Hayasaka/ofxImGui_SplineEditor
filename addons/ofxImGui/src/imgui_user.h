@@ -2,19 +2,6 @@
 
 namespace ImGui
 {
-    
-    
-//    class Spline
-//    {
-//    public:
-//        Spline();
-//        void setup
-//    };
-    
-    IMGUI_API int Curve(const char *label, const ImVec2& size, int maxpoints, ImVec2 *points);
-    IMGUI_API float CurveValue(float p, int maxpoints, const ImVec2 *points);
-    IMGUI_API float CurveValueSmooth(float p, int maxpoints, const ImVec2 *points);
-    
     struct CurveEditor
     {
         bool valid;
@@ -29,7 +16,7 @@ namespace ImGui
     
     IMGUI_API CurveEditor BeginCurveEditor(const char* label, const int bin);
     IMGUI_API bool CurveSegment(ImVec2* point, CurveEditor& editor);
-    IMGUI_API void SplineCurve(const int n, vector<ImVec2> curve, CurveEditor& editor);
+    IMGUI_API void SplineCurve(const int n, vector<ImVec2>& curve, CurveEditor& editor);
     IMGUI_API void EndCurveEditor(const CurveEditor& editor);
 
 } // namespace ImGui

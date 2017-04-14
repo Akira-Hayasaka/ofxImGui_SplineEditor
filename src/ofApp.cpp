@@ -31,6 +31,8 @@ void ofApp::setup()
     }
     curvesTool.setup(bin, mappedBin, simplified);
     
+    controlPoints = mappedCurve;
+    
     gui.setup();
 }
 
@@ -64,7 +66,7 @@ void ofApp::draw()
     ImGui::CurveEditor editor = ImGui::BeginCurveEditor("Curve Editor Child", mappedBin);
     if (editor.valid)
     {
-        vector<ImVec2> controlPoints = mappedCurve;
+        
         ImGui::SplineCurve(mappedBin, controlPoints, editor);
         ImGui::EndCurveEditor(editor);
     }

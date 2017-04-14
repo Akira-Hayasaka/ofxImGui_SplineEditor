@@ -38,4 +38,5 @@ private:
     const int mappedBin = 512;
     vector<ofVec2f> curve;
     vector<ImVec2> mappedCurve;
+    vector<ImVec2> controlPoints;
 };
