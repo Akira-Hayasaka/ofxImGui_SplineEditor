@@ -5,10 +5,8 @@
 
 class ofxCurvesTool : public CurveLut {
 public:
-    void setup(const int bin, vector<ofVec2f> pLut);
-	void draw(int x = 0, int y = 0);
-	void save(string filename);
-	void load(string filename);
+    void setup(const int bin, const int mappedBin, vector<ofVec2f> pLut);
+	void draw();
 	
 	// these are only used internally
 	ofxCurvesTool();
@@ -35,4 +33,7 @@ protected:
 	bool dragState;
 	int curHover;
 	bool drawing, drawn;
+    
+    int bin;
+    int mappedBin;
 };

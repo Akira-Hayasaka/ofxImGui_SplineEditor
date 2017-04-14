@@ -30,8 +30,9 @@ private:
     ofxImGui::Gui gui;
     
     ofxCurvesTool curvesTool;
-    bool show;
     
+//    const int bin = 1024;
+//    const int mappedBin = 512;
     vector<float> lut;
     vector<ofVec2f> pLut;
     ofPolyline lutLine;

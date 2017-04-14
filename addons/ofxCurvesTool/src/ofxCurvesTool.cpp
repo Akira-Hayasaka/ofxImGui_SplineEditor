@@ -29,33 +29,30 @@ ofVec3f worldToScreen(ofVec3f world) {
 	return screen;
 }
 
-void ofxCurvesTool::setup(const int bin, vector<ofVec2f> pLut)
+void ofxCurvesTool::setup(const int bin, const int mappedBin, vector<ofVec2f> pLut)
 {
-    this->n = bin;
-    lut.resize(bin);
+    this->bin = bin;
+    this->n = mappedBin;
+    lut.resize(mappedBin);
     for (auto ent : pLut)
-        add(ent);
+    {
+        add(ofVec2f(ofMap(ent.x, 0.0, bin, 0.0, mappedBin, true),
+                    ofMap(ent.y, 0.0, bin, 0.0, mappedBin, true)));
+    }
     update();
 }
                
-void ofxCurvesTool::draw(int x, int y) {
+void ofxCurvesTool::draw()
+{
 	drawn = true; // we've made a call to draw
 	
 	ofPushStyle();
-	ofPushMatrix();
-	ofTranslate(x, y);
 	
 	drawPosition = worldToScreen(ofVec2f(0, 0));
 	
 	ofPushMatrix();
 	ofTranslate(0, n);
 	ofScale(1, -1);
-	
-	/*
-	ofSetColor(ofColor::black);
-	ofFill();
-	ofRect(0, 0, n, n);
-	*/
 	
 	// grid
 	ofSetColor(50);
@@ -117,44 +114,11 @@ void ofxCurvesTool::draw(int x, int y) {
 		string label = ofToString((int) cur.x) + ", " + ofToString((int) cur.y);
 		ofDrawBitmapString(label, 4, 18);
 	}
-	ofPopMatrix();
 	ofPopStyle();
 }
 
-void ofxCurvesTool::save(string filename) {
-	ofFile out(filename, ofFile::WriteOnly);
-	out << "[";
-	int m = controlPoints.size();
-	for(int i = 0; i < m; i++) {
-		ofVec2f& cur = controlPoints[i];
-		out << "[" << (int) cur.x << "," << (int) cur.y << "]";
-		if(i + 1 < m) {
-			out << ",";
-		}
-	}
-	out << "]";
-}
-
-// basic yml list-of-lists parser 
-void ofxCurvesTool::load(string filename) {
-	if(ofFile(filename).exists()) {
-		string in = ofFile(filename).readToBuffer();
-		ofStringReplace(in, " ", "");
-		vector<string> all = ofSplitString(in, "],[");
-		controlPoints.clear();
-		for(int i = 0; i < all.size(); i++) {
-			ofStringReplace(all[i], "[", "");
-			ofStringReplace(all[i], "]", "");
-			vector<string> parts = ofSplitString(all[i], ",");
-			add(ofVec2f(ofToFloat(parts[0]), ofToFloat(parts[1])));
-		}
-		update();
-	}
-}
-
-
-
-void ofxCurvesTool::updateMouse(ofMouseEventArgs& args) {
+void ofxCurvesTool::updateMouse(ofMouseEventArgs& args)
+{
 	mouseX = args.x - drawPosition.x;
 	mouseY = n - (args.y - drawPosition.y);
 	focus = dragState;

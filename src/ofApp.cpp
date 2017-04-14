@@ -19,8 +19,7 @@ void ofApp::setup()
     vector<ofVec2f> simplified;
     for (auto v3 : lutLine.getVertices())
         simplified.push_back(ofVec2f(v3));
-    curvesTool.setup(bin, simplified);
-    show = true;
+    curvesTool.setup(bin, 512, simplified);
     
     gui.setup();
 }
@@ -33,9 +32,7 @@ void ofApp::draw()
     
     ofPushMatrix();
     ofTranslate(16, 16);
-    if(show) {
-        curvesTool.draw();
-    }
+    curvesTool.draw();
     ofPopMatrix();
     
     
@@ -84,18 +81,7 @@ double ofApp::st2084_pq(double L)
     return pow((c1 + c2 * pow(L, m1)) / (1.0 + c3 * pow(L, m1)), m2);
 }
 
-void ofApp::keyPressed(int key)
-{
-    if(key == '\t') {
-        show = !show;
-    }
-    if(key == 's') {
-        curvesTool.save("curves.yml");
-    }
-    if(key == 'l') {
-        curvesTool.load("curves.yml");
-    }
-}
+void ofApp::keyPressed(int key){}
 void ofApp::keyReleased(int key){}
 void ofApp::mouseMoved(int x, int y ){}
 void ofApp::mouseDragged(int x, int y, int button){}
