@@ -25,6 +25,9 @@ public:
 
 private:
     
+    float linear(float sig);
+    float sRGB(float sig);
+    float bt709(float sig);
     double st2084_pq(double L);
     
     ofxImGui::Gui gui;

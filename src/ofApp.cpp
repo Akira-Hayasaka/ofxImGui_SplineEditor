@@ -12,7 +12,14 @@ void ofApp::setup()
         curve.push_back(ofVec2f(ofMap(i, 0.0, max, 0, bin),
                                 ofMap(e, 0.0, max, 0, bin)));
         lutLine.addVertex(curve.back());
+        
     }
+    
+//    for (float i = 0; i < max; i += max / 10)
+//    {
+//        float e = st2084_pq(i);
+//        mappedCurve.push_back(ImVec2(i, e));
+//    }
     
     lutLine = lutLine.getResampledByCount(30);
     vector<ofVec2f> simplified;
@@ -40,14 +47,25 @@ void ofApp::draw()
     
     
     gui.begin();
+    
+//    ImGui::Text("Hello, world!");
+//    
+//    ImGui::Begin("Another Window");
+//    if (ImGui::Curve("curve editor", ImVec2(512, 512), 30, &mappedCurve[0]))
+//    {
+//        
+//    }
+//    ImGui::End();
+    
+    
     ImGui::Text("Hello, world!");
     
     ImGui::Begin("Another Window");
     ImGui::CurveEditor editor = ImGui::BeginCurveEditor("Curve Editor Child", mappedBin);
     if (editor.valid)
     {
-        vector<ImVec2> controlPoints;
-        ImGui::SplineCurve(mappedCurve, controlPoints, editor);
+        vector<ImVec2> controlPoints = mappedCurve;
+        ImGui::SplineCurve(mappedBin, controlPoints, editor);
         ImGui::EndCurveEditor(editor);
     }
     ImGui::End();
@@ -75,6 +93,23 @@ void ofApp::draw()
 //    ImGui::End();
     
     gui.end();
+}
+
+float ofApp::linear(float sig)
+{
+    return sig;
+}
+
+float ofApp::sRGB(float sig)
+{
+    float gamma = 2.2;
+    return pow(sig, 1.0/gamma);
+}
+
+float ofApp::bt709(float sig)
+{
+    float gamma = 2.4;
+    return pow(sig, 1.0/gamma);
 }
 
 double ofApp::st2084_pq(double L)
