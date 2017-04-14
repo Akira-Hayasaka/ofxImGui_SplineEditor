@@ -22,8 +22,9 @@ namespace ImGui
         int point_idx;
     };
     
-    IMGUI_API CurveEditor BeginCurveEditor(const char* label);
+    IMGUI_API CurveEditor BeginCurveEditor(const char* label, const int bin);
     IMGUI_API bool CurveSegment(ImVec2* point, CurveEditor& editor);
+    IMGUI_API void SplineCurve(vector<ImVec2>& curve, vector<ImVec2>& controlPoints, CurveEditor& editor);
     IMGUI_API void EndCurveEditor(const CurveEditor& editor);
 
 } // namespace ImGui

@@ -17,7 +17,11 @@ void ofApp::setup()
     lutLine = lutLine.getResampledByCount(30);
     vector<ofVec2f> simplified;
     for (auto v3 : lutLine.getVertices())
+    {
         simplified.push_back(ofVec2f(v3));
+        mappedCurve.push_back(ImVec2(ofMap(simplified.back().x, 0.0, bin, 0.0, mappedBin, true),
+                                     ofMap(simplified.back().y, 0.0, bin, mappedBin, 0.0, true)));
+    }
     curvesTool.setup(bin, mappedBin, simplified);
     
     gui.setup();
@@ -36,34 +40,40 @@ void ofApp::draw()
     
     
     gui.begin();
-//    ImGui::Begin("Another Window");
-//    ImGui::Text("Hello");
-//    ImGui::End();
-    
     ImGui::Text("Hello, world!");
     
     ImGui::Begin("Another Window");
-    ImGui::Text("Curve Editor (based on the code by https://github.com/nem0/LumixEngine):");
-    ImVec2 editor_size;
-    ImGui::CurveEditor editor = ImGui::BeginCurveEditor("Curve Editor Child");
+    ImGui::CurveEditor editor = ImGui::BeginCurveEditor("Curve Editor Child", mappedBin);
     if (editor.valid)
     {
-        editor_size = ImVec2(ImGui::CalcItemWidth(), ImGui::GetItemRectSize().y);
-        static ImVec2 point1[3] = {ImVec2(0.10f, 0.0f), ImVec2(0.0f, 0.0f), ImVec2(.0f, .10f)};
-        static ImVec2 point2[3] = {ImVec2(0.0f, 0.0f), ImVec2(0.0f, 0.0f), ImVec2(.0f, .10f)};
-//        static ImVec2 point3[3] = {ImVec2(0.0f, 0.0f), ImVec2(0.0f, 0.0f), ImVec2(.0f, .0f)};
-//        static ImVec2 point4[3] = {ImVec2(0.10f, 0.0f), ImVec2(0.0f, 0.0f), ImVec2(.0f, .10f)};
-        if (ImGui::CurveSegment(point1, editor))
-        {
-            //	changed = true;
-        }
-        ImGui::CurveSegment(point2, editor);
-//        ImGui::CurveSegment(point3, editor);
-//        ImGui::CurveSegment(point4, editor);
+        vector<ImVec2> controlPoints;
+        ImGui::SplineCurve(mappedCurve, controlPoints, editor);
         ImGui::EndCurveEditor(editor);
     }
     ImGui::End();
-                 
+    
+//    ImGui::Begin("Another Window");
+//    ImGui::Text("Curve Editor (based on the code by https://github.com/nem0/LumixEngine):");
+//    ImVec2 editor_size;
+//    ImGui::CurveEditor editor = ImGui::BeginCurveEditor("Curve Editor Child");
+//    if (editor.valid)
+//    {
+//        editor_size = ImVec2(ImGui::CalcItemWidth(), ImGui::GetItemRectSize().y);
+//        static ImVec2 point1[3] = {ImVec2(0.10f, 0.0f), ImVec2(0.0f, 0.0f), ImVec2(.0f, .10f)};
+//        static ImVec2 point2[3] = {ImVec2(0.0f, 0.0f), ImVec2(0.0f, 0.0f), ImVec2(.0f, .10f)};
+////        static ImVec2 point3[3] = {ImVec2(0.0f, 0.0f), ImVec2(0.0f, 0.0f), ImVec2(.0f, .0f)};
+////        static ImVec2 point4[3] = {ImVec2(0.10f, 0.0f), ImVec2(0.0f, 0.0f), ImVec2(.0f, .10f)};
+//        if (ImGui::CurveSegment(point1, editor))
+//        {
+//            //	changed = true;
+//        }
+//        ImGui::CurveSegment(point2, editor);
+////        ImGui::CurveSegment(point3, editor);
+////        ImGui::CurveSegment(point4, editor);
+//        ImGui::EndCurveEditor(editor);
+//    }
+//    ImGui::End();
+    
     gui.end();
 }
 

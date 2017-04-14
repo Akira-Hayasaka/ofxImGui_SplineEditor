@@ -9,7 +9,7 @@ namespace ImGui
 	const float CurveEditor::GRAPH_MARGIN = 14;
 	const float CurveEditor::HEIGHT = 100;
 
-	CurveEditor BeginCurveEditor(const char* label)
+	CurveEditor BeginCurveEditor(const char* label, const int bin)
 	{
 		CurveEditor editor;
 		editor.valid = false;
@@ -25,8 +25,8 @@ namespace ImGui
 
 		const ImVec2 label_size = CalcTextSize(label, nullptr, true);
 
-		editor.graph_size.x = CalcItemWidth() + (style.FramePadding.x * 2);
-		editor.graph_size.y = CurveEditor::HEIGHT;
+		editor.graph_size.x = bin;//CalcItemWidth() + (style.FramePadding.x * 2);
+		editor.graph_size.y = bin;//CurveEditor::HEIGHT;
 
 		const ImRect frame_bb(cursor_pos, cursor_pos + editor.graph_size);
 		const ImRect inner_bb(frame_bb.Min + style.FramePadding, frame_bb.Max - style.FramePadding);
@@ -61,6 +61,23 @@ namespace ImGui
 
 		InvisibleButton("bg", editor.inner_bb_max - editor.inner_bb_min);
 		SetCursorScreenPos(editor.beg_pos + ImVec2(0, editor.graph_size.y + 2 * CurveEditor::GRAPH_MARGIN + 4));
+	}
+
+	void SplineCurve(vector<ImVec2>& curve, vector<ImVec2>& controlPoints, CurveEditor& editor)
+	{
+		ImGuiWindow* window = GetCurrentWindow();
+		const ImRect inner_bb(editor.inner_bb_min, editor.inner_bb_max);
+
+		auto transform = [inner_bb](const ImVec2& p) -> ImVec2
+		{
+			return ImVec2(inner_bb.Min.x + p.x, inner_bb.Min.y + p.y);
+		};
+
+		// AddPolyline(const ImVec2* points, const int points_count, ImU32 col, bool closed, float thickness, bool anti_aliased)
+		vector<ImVec2> toBBLine;
+		for (auto c : curve)
+			toBBLine.push_back(transform(c));
+		window->DrawList->AddPolyline(&toBBLine[0], toBBLine.size(), IM_COL32_WHITE, false, 1.0, true);
 	}
 
 	bool CurveSegment(ImVec2* points, CurveEditor& editor)

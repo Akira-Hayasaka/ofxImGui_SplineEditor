@@ -34,4 +34,5 @@ private:
     const int bin = 1024;
     const int mappedBin = 512;
     vector<ofVec2f> curve;
+    vector<ImVec2> mappedCurve;
 };
