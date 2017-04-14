@@ -29,12 +29,12 @@ ofVec3f worldToScreen(ofVec3f world) {
 	return screen;
 }
 
-void ofxCurvesTool::setup(const int bin, const int mappedBin, vector<ofVec2f> pLut)
+void ofxCurvesTool::setup(const int bin, const int mappedBin, vector<ofVec2f> curve)
 {
     this->bin = bin;
     this->n = mappedBin;
     lut.resize(mappedBin);
-    for (auto ent : pLut)
+    for (auto ent : curve)
     {
         add(ofVec2f(ofMap(ent.x, 0.0, bin, 0.0, mappedBin, true),
                     ofMap(ent.y, 0.0, bin, 0.0, mappedBin, true)));

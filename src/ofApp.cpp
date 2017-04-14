@@ -4,22 +4,21 @@ void ofApp::setup()
 {
     ofSetVerticalSync(true);
     
-    int bin = 1024;
     float max = 1.0;
+    ofPolyline lutLine;
     for (float i = 0; i < max; i += max/bin)
     {
         float e = st2084_pq(i);
-        lut.push_back(e);
-        pLut.push_back(ofVec2f(ofMap(i, 0.0, max, 0, bin),
-                               ofMap(lut.back(), 0.0, max, 0, bin)));
-        lutLine.addVertex(pLut.back());
+        curve.push_back(ofVec2f(ofMap(i, 0.0, max, 0, bin),
+                                ofMap(e, 0.0, max, 0, bin)));
+        lutLine.addVertex(curve.back());
     }
     
     lutLine = lutLine.getResampledByCount(30);
     vector<ofVec2f> simplified;
     for (auto v3 : lutLine.getVertices())
         simplified.push_back(ofVec2f(v3));
-    curvesTool.setup(bin, 512, simplified);
+    curvesTool.setup(bin, mappedBin, simplified);
     
     gui.setup();
 }

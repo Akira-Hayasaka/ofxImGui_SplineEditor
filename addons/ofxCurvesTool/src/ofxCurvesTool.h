@@ -5,7 +5,7 @@
 
 class ofxCurvesTool : public CurveLut {
 public:
-    void setup(const int bin, const int mappedBin, vector<ofVec2f> pLut);
+    void setup(const int bin, const int mappedBin, vector<ofVec2f> curve);
 	void draw();
 	
 	// these are only used internally
