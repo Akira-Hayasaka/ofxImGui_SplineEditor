@@ -62,11 +62,10 @@ void ofApp::draw()
     
     ImGui::Text("Hello, world!");
     
-    ImGui::Begin("Another Window");
-    ImGui::CurveEditor editor = ImGui::BeginCurveEditor("Curve Editor Child", mappedBin);
+    ImGui::Begin("Spline Editor");
+    ImGui::CurveEditor editor = ImGui::BeginCurveEditor("", mappedBin);
     if (editor.valid)
     {
-        
         ImGui::SplineCurve(mappedBin, controlPoints, editor);
         ImGui::EndCurveEditor(editor);
     }

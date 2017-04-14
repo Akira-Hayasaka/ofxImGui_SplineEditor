@@ -63,7 +63,7 @@ namespace ImGui
 		SetCursorScreenPos(editor.beg_pos + ImVec2(0, editor.graph_size.y + 2 * CurveEditor::GRAPH_MARGIN + 4));
 	}
 
-	void SplineCurve(const int n, vector<ImVec2>& curve, CurveEditor& editor)
+	void SplineCurve(const int bin, vector<ImVec2>& curve, CurveEditor& editor)
 	{
 		ImGuiWindow* window = GetCurrentWindow();
 		const ImRect inner_bb(editor.inner_bb_min, editor.inner_bb_max);
@@ -73,7 +73,7 @@ namespace ImGui
 			return ImVec2(inner_bb.Min.x + p.x, inner_bb.Min.y + p.y);
 		};
 
-        auto interpolate = [n](const vector<ImVec2> curve) -> vector<float>
+        auto interpolate = [bin](const vector<ImVec2> curve) -> vector<float>
         {
             // build the tridiagonal system
             // (assume 0 boundary conditions: y2[0]=y2[-1]=0)
@@ -112,7 +112,7 @@ namespace ImGui
                 sd[i] = result[i] / matrix[i][1];
             }
 
-            vector<float> lut(n);
+            vector<float> lut(bin);
             const ImVec2& first = curve.front();
             const ImVec2& last = curve.back();
             for(int x = 0; x < first.x; x++) {
@@ -129,11 +129,11 @@ namespace ImGui
                     lut[x] = (a*cur.y + b*next.y + (h*h/6)*((a*a*a-a)*sd[i]+(b*b*b-b)*sd[i+1]));
                 }
             }
-            for(int x = last.x; x < n; x++) {
+            for(int x = last.x; x < bin; x++) {
                 lut[x] = last.y;
             }
-            for(int x = 0; x < n; x++) {
-                lut[x] = ofClamp(lut[x], 0, n - 1);
+            for(int x = 0; x < bin; x++) {
+                lut[x] = ofClamp(lut[x], 0, bin - 1);
             }
             
             return lut;
@@ -145,10 +145,16 @@ namespace ImGui
             float vy = p1.y - p2.y;
             return (float)sqrt(vx*vx + vy*vy);
         };
-
+        
+        auto xsort = [](const ImVec2& p1, const ImVec2& p2) -> bool
+        {
+            return p1.x < p2.x;
+        };
         
         static const float SIZE = 3;
         int rad = 5;
+        int idx = 0;
+        bool bActiveOrHovered = false;
         for (auto& c : curve)
         {
             ImVec2 cen(transform(c));
@@ -159,15 +165,29 @@ namespace ImGui
             ++editor.point_idx;
             InvisibleButton("", ImVec2(2 * rad, 2 * rad));
             
-            if (IsItemActive() && IsMouseDragging(0))
+            if (IsItemActive() && IsMouseDragging(0) && idx != 0 && idx != curve.size()-1)
             {
-                c = GetIO().MousePos - inner_bb.Min;
+                if (inner_bb.Contains(GetIO().MousePos))
+                {
+                    ImVec2 left = transform(curve.at(idx-1));
+                    ImVec2 right = transform(curve.at(idx+1));
+                    ImVec2 dest = transform(GetIO().MousePos - inner_bb.Min);
+                    if (left.x < dest.x && dest.x < right.x)
+                        c = GetIO().MousePos - inner_bb.Min;
+                }
                 cen = transform(c);
                 window->DrawList->AddCircleFilled(cen, rad, IM_COL32(0, 255, 255, 255), 16);
+                
+                if (!bActiveOrHovered) bActiveOrHovered = true;
             }
             else if (IsItemHovered())
             {
-                window->DrawList->AddCircleFilled(cen, rad, IM_COL32(255, 0, 0, 255), 16);
+                if (ImGui::IsKeyPressed(259) && idx != 0 && idx != curve.size()-1)
+                    curve.erase(curve.begin() + idx);
+                else
+                    window->DrawList->AddCircleFilled(cen, rad, IM_COL32(255, 0, 0, 255), 16);
+                
+                if (!bActiveOrHovered) bActiveOrHovered = true;
             }
             else
             {
@@ -176,6 +196,14 @@ namespace ImGui
             
             PopID();
             SetCursorScreenPos(cursor_pos);
+            idx++;
+        }
+        
+        if (!bActiveOrHovered &&
+            ImGui::IsMouseClicked(0) && inner_bb.Contains(GetIO().MousePos))
+        {
+            curve.push_back(GetIO().MousePos - inner_bb.Min);
+            sort(curve.begin(), curve.end(), xsort);
         }
 		
         vector<float> lut = interpolate(curve);
