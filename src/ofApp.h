@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "ofxImGui.h"
-#include "ofxCurvesTool.h"
 
 class ofApp : public ofBaseApp
 {
@@ -32,11 +31,7 @@ private:
     
     ofxImGui::Gui gui;
     
-    ofxCurvesTool curvesTool;
-    
     const int bin = 1024;
     const int mappedBin = 512;
-    vector<ofVec2f> curve;
-    vector<ImVec2> mappedCurve;
     vector<ImVec2> controlPoints;
 };

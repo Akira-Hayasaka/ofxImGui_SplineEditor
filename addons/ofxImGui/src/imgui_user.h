@@ -15,8 +15,7 @@ namespace ImGui
     };
     
     IMGUI_API CurveEditor BeginCurveEditor(const char* label, const int bin);
-    IMGUI_API bool CurveSegment(ImVec2* point, CurveEditor& editor);
-    IMGUI_API void SplineCurve(const int bin, vector<ImVec2>& curve, CurveEditor& editor);
+    IMGUI_API void SplineCurve(const int bin, vector<ImVec2>& controlPoints, CurveEditor& editor);
     IMGUI_API void EndCurveEditor(const CurveEditor& editor);
 
 } // namespace ImGui
