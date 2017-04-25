@@ -12,6 +12,7 @@ namespace ImGui
         ImVec2 inner_bb_min;
         ImVec2 inner_bb_max;
         int point_idx;
+        int dispSize;
     };
     
     IMGUI_API CurveEditor BeginCurveEditor(const char* label, const int bin);

@@ -32,6 +32,8 @@ private:
     ofxImGui::Gui gui;
     
     const int bin = 1024;
-    const int mappedBin = 512;
     vector<ImVec2> controlPoints;
+    
+    ofImage bg;
+    ofImage product;
 };
