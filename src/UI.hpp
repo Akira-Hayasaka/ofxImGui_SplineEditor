@@ -1,21 +1,23 @@
 //
-//  GUI.hpp
+//  UI.hpp
 //  ImGUI
 //
 //  Created by Akira Hayasaka on 2017/04/25.
 //
 //
 
-#ifndef GUI_hpp
-#define GUI_hpp
+#ifndef UI_hpp
+#define UI_hpp
 
 #include "ofMain.h"
 #include "ofxImGui.h"
 
-class GUI
+class UI
 {
 public:
     
+    UI();
+    ~UI(){};
     void setup();
     void draw();
     
@@ -26,4 +28,4 @@ private:
     vector<ImVec2> controlPoints;
 };
 
-#endif /* GUI_hpp */
+#endif /* UI_hpp */

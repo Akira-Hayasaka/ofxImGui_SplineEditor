@@ -1,21 +1,21 @@
 //
-//  GUI.cpp
+//  UI.cpp
 //  ImGUI
 //
 //  Created by Akira Hayasaka on 2017/04/25.
 //
 //
 
-#include "GUI.hpp"
+#include "UI.hpp"
 
-void GUI::setup()
+UI::UI()
 {
     controlPoints.push_back(ImVec2(0, 200));
     controlPoints.push_back(ImVec2(200, 0));
     gui.setup();
 }
 
-void GUI::draw()
+void UI::draw()
 {
     gui.begin();
     

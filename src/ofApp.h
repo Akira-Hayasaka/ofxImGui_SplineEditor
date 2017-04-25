@@ -1,12 +1,14 @@
 #pragma once
 
 #include "ofMain.h"
-#include "GUI.hpp"
+#include "Globals.hpp"
+#include "Preview.hpp"
 
 class ofApp : public ofBaseApp
 {
 public:
     void setup();
+    void exit();
     void update();
     void draw();
     
@@ -24,8 +26,7 @@ public:
 
 private:
     
-    GUI gui;
-    
+    Preview preview;
     ofImage bg;
     ofImage product;
 };
