@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxImGui.h"
+#include "GUI.hpp"
 
 class ofApp : public ofBaseApp
 {
@@ -24,15 +24,7 @@ public:
 
 private:
     
-    float linear(float sig);
-    float sRGB(float sig);
-    float bt709(float sig);
-    double st2084_pq(double L);
-    
-    ofxImGui::Gui gui;
-    
-    const int bin = 1024;
-    vector<ImVec2> controlPoints;
+    GUI gui;
     
     ofImage bg;
     ofImage product;

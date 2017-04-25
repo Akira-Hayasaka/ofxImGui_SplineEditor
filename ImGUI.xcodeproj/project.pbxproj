@@ -22,6 +22,7 @@
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
+		E926DEDA1EAF343D00331317 /* GUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E926DED81EAF343D00331317 /* GUI.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E8C182404B9515E067CFE745 /* ofxCurvesTool.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxCurvesTool.cpp; path = addons/ofxCurvesTool/src/ofxCurvesTool.cpp; sourceTree = SOURCE_ROOT; };
 		E926DED71EAF338B00331317 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		E926DED81EAF343D00331317 /* GUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUI.cpp; sourceTree = "<group>"; };
+		E926DED91EAF343D00331317 /* GUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GUI.hpp; sourceTree = "<group>"; };
 		ED7A8B83362644B9EFF89B69 /* Helpers.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = Helpers.cpp; path = addons/ofxImGui/src/Helpers.cpp; sourceTree = SOURCE_ROOT; };
 		F4DD2FE21C9EC610B14C621F /* EngineOpenGLES.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = EngineOpenGLES.h; path = addons/ofxImGui/src/EngineOpenGLES.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -221,6 +224,8 @@
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
+				E926DED81EAF343D00331317 /* GUI.cpp */,
+				E926DED91EAF343D00331317 /* GUI.hpp */,
 				E926DED71EAF338B00331317 /* Constants.h */,
 			);
 			path = src;
@@ -336,6 +341,7 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				2247B512E0898FB4529E1C2B /* BaseEngine.cpp in Sources */,
+				E926DEDA1EAF343D00331317 /* GUI.cpp in Sources */,
 				44F3DA38F024B948E09AA6CF /* BaseTheme.cpp in Sources */,
 				3F30B5157C64D101EFF8564D /* EngineGLFW.cpp in Sources */,
 				874E4B0E661C8C379B88A599 /* EngineOpenGLES.cpp in Sources */,
