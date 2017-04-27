@@ -12,6 +12,7 @@
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
 
+
 class Preview : public ofThread
 {
 public:
@@ -20,6 +21,10 @@ public:
     ~Preview();
     
     void draw();
+    void update();
+    void setPosition(const int idx);
+    int getNumFile() { return seqPath.size(); }
+    int getPosition() { return curPosIdx; }
     
 protected:
     
@@ -27,22 +32,20 @@ protected:
     
 private:
     
-    enum STATE
-    {
-        AVAILABLE,
-        LOADING,
-        PIXELREADY
-    };
-    STATE state;
+    void load(const int idx);
     
     static const int NUM_LOAD = 10;
+    template<class T>
+    using idx_binded = map<int, T>;
     
-    ofThreadChannel<string> loadCh;
+    ofThreadChannel<idx_binded<string>> loadCh;
     ofThreadChannel<bool> waitCh;
     
-    vector<string> seqPath;
-    deque<ofTexture> texs;
-    ofTexture* curTex;
+    int curPosIdx;
+    
+    vector<string> seqPath;    
+    idx_binded<ofPixels> idx_pxs;
+    ofImage drawer;
 };
 
 #endif /* Preview_hpp */

@@ -27,6 +27,9 @@ public:
 private:
     
     Preview preview;
-    ofImage bg;
     ofImage product;
+    
+    ofVideoPlayer vid;
+    
+    int testIdx;
 };
