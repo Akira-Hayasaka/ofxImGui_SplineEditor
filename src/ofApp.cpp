@@ -7,13 +7,11 @@ void ofApp::setup()
     ofSetFrameRate(60);
     
     Global::ui = make_shared<UI>();
+    preview = make_shared<Preview>();
+    Global::ui->num_preview_frame = preview->getTtlNumFrame();
     
     product.load("/Users/Akira/Project/20170213GrandCore/UIDesign/product.png");
     product.resize(product.getWidth() * 0.15, product.getHeight() * 0.15);
-    
-    vid.load("/Users/Akira/Project/20170213GrandCore/sirokan_small_mov/sirokan_small.mov");
-    ofLog() << "num frame = " << vid.getTotalNumFrames();
-    ofLog() << "dur = " << vid.getDuration();
     
     testIdx = 0;
 }
@@ -25,19 +23,12 @@ void ofApp::exit()
 
 void ofApp::update()
 {
-//    if (testIdx < preview.getNumFile())
-//    {
-//        preview.setPosition(testIdx);
-//        testIdx++;
-//    }
-    vid.update();
-    preview.update();
+    preview->update();
 }
 
 void ofApp::draw()
 {
-//    preview.draw();
-    vid.draw(0, 0);
+    preview->draw();
     
     Global::ui->draw();
     
@@ -50,28 +41,18 @@ void ofApp::draw()
 
 void ofApp::keyPressed(int key)
 {
-    if (!vid.isPlaying())
-    {
-        vid.setPaused(false);
-        vid.play();
-    }
-    else
-        vid.setPaused(true);
+//    if (!preview->isPlaying())
+//    {
+//        preview->setPaused(false);
+//        preview->play();
+//    }
+//    else
+//        preview->setPaused(true);
 }
+void ofApp::mouseDragged(int x, int y, int button){}
 void ofApp::keyReleased(int key){}
-void ofApp::mouseMoved(int x, int y )
-{
-    
-}
-void ofApp::mouseDragged(int x, int y, int button)
-{
-    vid.setFrame(ofMap(x, 0, ofGetScreenWidth(), 0, preview.getNumFile(), true));
-//    preview.setPosition(ofMap(x, 0, ofGetScreenWidth(), 0, preview.getNumFile(), true));
-}
-void ofApp::mousePressed(int x, int y, int button)
-{
-    
-}
+void ofApp::mouseMoved(int x, int y ){}
+void ofApp::mousePressed(int x, int y, int button){}
 void ofApp::mouseReleased(int x, int y, int button){}
 void ofApp::mouseEntered(int x, int y){}
 void ofApp::mouseExited(int x, int y){}

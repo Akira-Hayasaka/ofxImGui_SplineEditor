@@ -21,11 +21,13 @@ public:
     void setup();
     void draw();
     
-private:
-    
     ofxImGui::Gui gui;
     
+    int num_preview_frame;
+    int selected_frame;
     vector<ImVec2> controlPoints;
+    
+    ofEvent<int> preview_frame_change_event;
 };
 
 #endif /* UI_hpp */

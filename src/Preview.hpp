@@ -10,42 +10,31 @@
 #define Preview_hpp
 
 #include "ofMain.h"
-#include "ofxXmlSettings.h"
+#include "Constants.h"
+#include "Globals.hpp"
 
-
-class Preview : public ofThread
+class Preview
 {
 public:
     
     Preview();
     ~Preview();
     
-    void draw();
     void update();
-    void setPosition(const int idx);
-    int getNumFile() { return seqPath.size(); }
-    int getPosition() { return curPosIdx; }
+    void draw();
     
-protected:
-    
-    void threadedFunction() override;
+    void play() { vid.play(); };
+    void stop() { vid.stop(); };
+    void setFrame(int& frame) { vid.setFrame(frame); };
+    void setPaused(const bool bPause) { vid.setPaused(bPause); };
+    int getTtlNumFrame() { return vid.getTotalNumFrames(); };
+    bool isPlaying() { return vid.isPlaying(); }
     
 private:
     
-    void load(const int idx);
+    string sirokan_mov_path;
     
-    static const int NUM_LOAD = 10;
-    template<class T>
-    using idx_binded = map<int, T>;
-    
-    ofThreadChannel<idx_binded<string>> loadCh;
-    ofThreadChannel<bool> waitCh;
-    
-    int curPosIdx;
-    
-    vector<string> seqPath;    
-    idx_binded<ofPixels> idx_pxs;
-    ofImage drawer;
+    ofVideoPlayer vid;
 };
 
 #endif /* Preview_hpp */

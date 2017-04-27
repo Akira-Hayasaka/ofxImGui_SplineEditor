@@ -26,10 +26,8 @@ public:
 
 private:
     
-    Preview preview;
+    shared_ptr<Preview> preview;
     ofImage product;
-    
-    ofVideoPlayer vid;
     
     int testIdx;
 };

@@ -8,7 +8,9 @@
 
 #include "UI.hpp"
 
-UI::UI()
+UI::UI() :
+num_preview_frame(0),
+selected_frame(0)
 {
     controlPoints.push_back(ImVec2(0, 200));
     controlPoints.push_back(ImVec2(200, 0));
@@ -84,8 +86,8 @@ void UI::draw()
     ImGui::PushItemWidth(-1);
     ImGui::Button("Play"); ImGui::SameLine();
     ImGui::Button("Render");ImGui::SameLine();
-    static float pct2 = 0.0;
-    ImGui::SliderFloat("pct2", &pct2, 0.0f, 1.0f, "preview pos = %.3f");
+    if (ImGui::SliderInt("preview_frame", &selected_frame, 0, num_preview_frame-1, "preview frame = %.0f%"))
+        ofNotifyEvent(preview_frame_change_event, selected_frame);
     ImGui::PopItemWidth();
     ImGui::End();
     
