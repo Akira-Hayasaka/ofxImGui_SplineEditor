@@ -84,7 +84,9 @@ void UI::draw()
                  ImGuiWindowFlags_NoResize |
                  ImGuiWindowFlags_NoCollapse);
     ImGui::PushItemWidth(-1);
-    ImGui::Button("Play"); ImGui::SameLine();
+    if (ImGui::Button("Play"))
+        ofNotifyEvent(toggle_play_event);
+    ImGui::SameLine();
     ImGui::Button("Render");ImGui::SameLine();
     if (ImGui::SliderInt("preview_frame", &selected_frame, 0, num_preview_frame-1, "preview frame = %.0f%"))
         ofNotifyEvent(preview_frame_change_event, selected_frame);

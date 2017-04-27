@@ -28,6 +28,7 @@ public:
     vector<ImVec2> controlPoints;
     
     ofEvent<int> preview_frame_change_event;
+    ofEvent<void> toggle_play_event;
 };
 
 #endif /* UI_hpp */

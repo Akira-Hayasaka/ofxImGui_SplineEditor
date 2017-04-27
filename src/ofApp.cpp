@@ -41,13 +41,8 @@ void ofApp::draw()
 
 void ofApp::keyPressed(int key)
 {
-//    if (!preview->isPlaying())
-//    {
-//        preview->setPaused(false);
-//        preview->play();
-//    }
-//    else
-//        preview->setPaused(true);
+    if (key == ' ')
+        preview->togglePlaying();
 }
 void ofApp::mouseDragged(int x, int y, int button){}
 void ofApp::keyReleased(int key){}

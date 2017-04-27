@@ -23,7 +23,7 @@ public:
     void update();
     void draw();
     
-    void play() { vid.play(); };
+    void togglePlaying();
     void stop() { vid.stop(); };
     void setFrame(int& frame) { vid.setFrame(frame); };
     void setPaused(const bool bPause) { vid.setPaused(bPause); };
